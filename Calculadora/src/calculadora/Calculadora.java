@@ -17,9 +17,10 @@ public class Calculadora {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-       CALCULADORA_DANI inst = new CALCULADORA_DANI();
-       inst.setVisible(true);
-       
+      // CALCULADORA_DANI inst = new CALCULADORA_DANI();
+      // inst.setVisible(true);
+       ProyectoCalcu cal = new ProyectoCalcu();
+       cal.setVisible(true);
     }
     
 }
