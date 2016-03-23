@@ -13,7 +13,12 @@ import javax.swing.JOptionPane;
  * @date 14/03/2016
  */
 public class ProyectoCalcu extends javax.swing.JFrame {
-
+    // variables globales para almacenar el primer digito y realizar la operacion con el segundo y mostrar el resultado
+    public float nun1 ;
+    public float nun2 ;
+    public float result;
+    public String Signo; // sirve para saber que tipo de operacion estoy realizando asi decidir que operacion 
+    // ejecutar despues de pulsar el boton igual
     /**
      * Creates new form ProyectoCalcu
      */
@@ -78,6 +83,11 @@ public class ProyectoCalcu extends javax.swing.JFrame {
         });
 
         btnMenos.setText("-");
+        btnMenos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMenosActionPerformed(evt);
+            }
+        });
 
         btn0.setText("0");
         btn0.addActionListener(new java.awt.event.ActionListener() {
@@ -98,6 +108,11 @@ public class ProyectoCalcu extends javax.swing.JFrame {
         btnMmas.setText("M+");
 
         btnMas.setText("+");
+        btnMas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMasActionPerformed(evt);
+            }
+        });
 
         btnMmenos.setText("M-");
 
@@ -106,6 +121,11 @@ public class ProyectoCalcu extends javax.swing.JFrame {
         btnCe.setText("CE");
 
         btnIgual.setText("=");
+        btnIgual.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIgualActionPerformed(evt);
+            }
+        });
 
         btnMasmenos.setText("+/-");
 
@@ -145,10 +165,14 @@ public class ProyectoCalcu extends javax.swing.JFrame {
         });
 
         btnDiv.setText("/");
+        btnDiv.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDivActionPerformed(evt);
+            }
+        });
 
         txtNumeros.setFont(new java.awt.Font("Calibri", 0, 36)); // NOI18N
         txtNumeros.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        txtNumeros.setText("0");
         txtNumeros.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         txtNumeros.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -176,6 +200,11 @@ public class ProyectoCalcu extends javax.swing.JFrame {
         });
 
         btnMulti.setText("*");
+        btnMulti.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMultiActionPerformed(evt);
+            }
+        });
 
         btnMr.setText("MR");
 
@@ -425,7 +454,11 @@ public class ProyectoCalcu extends javax.swing.JFrame {
     private void btnCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCActionPerformed
         
         txtNumeros.enableInputMethods(true);
-        txtNumeros.setText("0");
+        txtNumeros.setText("");
+        btnMas.setEnabled(true);
+        btnMenos.setEnabled(true);
+        btnDiv.setEnabled(true);
+        btnMulti.setEnabled(true);
         
     }//GEN-LAST:event_btnCActionPerformed
 
@@ -440,6 +473,58 @@ public class ProyectoCalcu extends javax.swing.JFrame {
         }
   
     }//GEN-LAST:event_btnComaActionPerformed
+// boton de suma y le decimos a la variable signo que sea igual a suma
+    private void btnMasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMasActionPerformed
+        nun1 = Integer.parseInt(txtNumeros.getText());
+        btnMas.setEnabled(false);
+        txtNumeros.setText("");
+        Signo = "suma";
+    }//GEN-LAST:event_btnMasActionPerformed
+
+    private void btnIgualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIgualActionPerformed
+        nun2 = Integer.parseInt(txtNumeros.getText());
+        
+        if (Signo.equals("suma")){
+            result = nun1 + nun2;
+            txtNumeros.setText(String.valueOf(result));    
+        } else if (Signo.equals("resta")){
+            result = nun1 - nun2;
+            txtNumeros.setText(String.valueOf(result));
+        } else if (Signo.equals("multiplicacion")){
+            result = nun1 * nun2;
+            txtNumeros.setText(String.valueOf(result));
+        }else if (Signo.equals("division")){
+            result = nun1 / nun2;
+            txtNumeros.setText(String.valueOf(result));
+        }
+    }//GEN-LAST:event_btnIgualActionPerformed
+
+    private void btnDivActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDivActionPerformed
+        if (!txtNumeros.getText().equals("0")){
+        nun1 = Integer.parseInt(txtNumeros.getText());
+        btnDiv.setEnabled(false);
+        txtNumeros.setText("");
+        Signo = "division";
+        }else {
+        JOptionPane.showMessageDialog(null, "No se permite la división entre 0");
+        txtNumeros.setText("");
+        }
+        
+    }//GEN-LAST:event_btnDivActionPerformed
+
+    private void btnMenosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenosActionPerformed
+        nun1 = Integer.parseInt(txtNumeros.getText());
+        btnMenos.setEnabled(false);
+        txtNumeros.setText("");
+        Signo = "resta";
+    }//GEN-LAST:event_btnMenosActionPerformed
+
+    private void btnMultiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMultiActionPerformed
+        nun1 = Integer.parseInt(txtNumeros.getText());
+        btnMulti.setEnabled(false);
+        txtNumeros.setText("");
+        Signo = "multiplicacion";
+    }//GEN-LAST:event_btnMultiActionPerformed
    /**
     * 
     * metodo que me retorna si existe un punto ya dentro 
