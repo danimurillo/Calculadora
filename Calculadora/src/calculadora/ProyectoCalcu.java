@@ -25,6 +25,7 @@ public class ProyectoCalcu extends javax.swing.JFrame {
     public ProyectoCalcu() {
         initComponents();
         setLocationRelativeTo(null);
+        txtNumeros.setEnabled(false);
        
     }
 
@@ -465,9 +466,9 @@ public class ProyectoCalcu extends javax.swing.JFrame {
     private void btnComaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComaActionPerformed
         // TODO add your handling code here:
         if (txtNumeros.getText().length() <= 0 ){
-            txtNumeros.setText("0,");
+            txtNumeros.setText("0.");
         }else if (hayPunto() == false){
-          txtNumeros.setText(txtNumeros.getText()+ ",");
+          txtNumeros.setText(txtNumeros.getText()+ ".");
         }else{
         JOptionPane.showMessageDialog(null, "Ya existe punto");
         }
@@ -475,14 +476,18 @@ public class ProyectoCalcu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnComaActionPerformed
 // boton de suma y le decimos a la variable signo que sea igual a suma
     private void btnMasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMasActionPerformed
-        nun1 = Integer.parseInt(txtNumeros.getText());
+      if (txtNumeros.getText().length() != 0 ){
+        nun1 = Float.parseFloat(txtNumeros.getText());
         btnMas.setEnabled(false);
         txtNumeros.setText("");
-        Signo = "suma";
+        Signo = "suma"; 
+      }else{JOptionPane.showMessageDialog(null, "Debe digitar un numero");
+      }
+      
     }//GEN-LAST:event_btnMasActionPerformed
 
     private void btnIgualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIgualActionPerformed
-        nun2 = Integer.parseInt(txtNumeros.getText());
+        nun2 = Float.parseFloat(txtNumeros.getText());
         
         if (Signo.equals("suma")){
             result = nun1 + nun2;
@@ -500,8 +505,10 @@ public class ProyectoCalcu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnIgualActionPerformed
 
     private void btnDivActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDivActionPerformed
-        if (!txtNumeros.getText().equals("0")){
-        nun1 = Integer.parseInt(txtNumeros.getText());
+       if (txtNumeros.getText().length() == 0 ){
+           JOptionPane.showMessageDialog(null, "Debe digitar un numero");
+       }else if (!txtNumeros.getText().equals("0")){
+        nun1 = Float.parseFloat(txtNumeros.getText());
         btnDiv.setEnabled(false);
         txtNumeros.setText("");
         Signo = "division";
@@ -513,17 +520,23 @@ public class ProyectoCalcu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnDivActionPerformed
 
     private void btnMenosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenosActionPerformed
-        nun1 = Integer.parseInt(txtNumeros.getText());
+        if (txtNumeros.getText().length() != 0 ){
+        nun1 = Float.parseFloat(txtNumeros.getText());
         btnMenos.setEnabled(false);
         txtNumeros.setText("");
         Signo = "resta";
+        }else{JOptionPane.showMessageDialog(null, "Debe digitar un numero");
+      }
     }//GEN-LAST:event_btnMenosActionPerformed
 
     private void btnMultiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMultiActionPerformed
-        nun1 = Integer.parseInt(txtNumeros.getText());
+        if (txtNumeros.getText().length() != 0 ){
+        nun1 = Float.parseFloat(txtNumeros.getText());
         btnMulti.setEnabled(false);
         txtNumeros.setText("");
         Signo = "multiplicacion";
+        }else{JOptionPane.showMessageDialog(null, "Debe digitar un numero");
+      }
     }//GEN-LAST:event_btnMultiActionPerformed
    /**
     * 
@@ -536,7 +549,7 @@ public class ProyectoCalcu extends javax.swing.JFrame {
       
         for (int i = 0; i < cadena.length() ; i++) {
             
-        if (cadena.substring(i, i + 1).equals (",")){
+        if (cadena.substring(i, i + 1).equals (".")){
             punto = true;
             break;
         }else{
