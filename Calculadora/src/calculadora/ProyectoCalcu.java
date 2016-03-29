@@ -16,9 +16,12 @@ public class ProyectoCalcu extends javax.swing.JFrame {
     // variables globales para almacenar el primer digito y realizar la operacion con el segundo y mostrar el resultado
     public float nun1 ;
     public float nun2 ;
-    public float result;
+    public float result = 0;
     public String Signo; // sirve para saber que tipo de operacion estoy realizando asi decidir que operacion 
     // ejecutar despues de pulsar el boton igual
+    public float memoria = 0;
+    public float porciento = 0;
+    
     /**
      * Creates new form ProyectoCalcu
      */
@@ -98,6 +101,11 @@ public class ProyectoCalcu extends javax.swing.JFrame {
         });
 
         btnMs.setText("MS");
+        btnMs.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMsActionPerformed(evt);
+            }
+        });
 
         btnComa.setText(",");
         btnComa.addActionListener(new java.awt.event.ActionListener() {
@@ -107,6 +115,11 @@ public class ProyectoCalcu extends javax.swing.JFrame {
         });
 
         btnMmas.setText("M+");
+        btnMmas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMmasActionPerformed(evt);
+            }
+        });
 
         btnMas.setText("+");
         btnMas.addActionListener(new java.awt.event.ActionListener() {
@@ -116,10 +129,20 @@ public class ProyectoCalcu extends javax.swing.JFrame {
         });
 
         btnMmenos.setText("M-");
+        btnMmenos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMmenosActionPerformed(evt);
+            }
+        });
 
         bntBorrar.setText("<-");
 
         btnCe.setText("CE");
+        btnCe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCeActionPerformed(evt);
+            }
+        });
 
         btnIgual.setText("=");
         btnIgual.addActionListener(new java.awt.event.ActionListener() {
@@ -129,6 +152,11 @@ public class ProyectoCalcu extends javax.swing.JFrame {
         });
 
         btnMasmenos.setText("+/-");
+        btnMasmenos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMasmenosActionPerformed(evt);
+            }
+        });
 
         btn7.setText("7");
         btn7.addActionListener(new java.awt.event.ActionListener() {
@@ -208,8 +236,18 @@ public class ProyectoCalcu extends javax.swing.JFrame {
         });
 
         btnMr.setText("MR");
+        btnMr.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMrActionPerformed(evt);
+            }
+        });
 
         btnMod.setText("MOD");
+        btnMod.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModActionPerformed(evt);
+            }
+        });
 
         btnC.setText("C");
         btnC.addActionListener(new java.awt.event.ActionListener() {
@@ -226,6 +264,11 @@ public class ProyectoCalcu extends javax.swing.JFrame {
         });
 
         btnPor.setText("%");
+        btnPor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPorActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -339,9 +382,10 @@ public class ProyectoCalcu extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+  //Elimina cualquier número almacenado en memoria.
     private void btnMcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMcActionPerformed
-        // TODO add your handling code here:
+       memoria = 0;
+       JOptionPane.showMessageDialog(null, "Memoria vacia");
     }//GEN-LAST:event_btnMcActionPerformed
 
     private void txtNumerosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNumerosActionPerformed
@@ -361,15 +405,18 @@ public class ProyectoCalcu extends javax.swing.JFrame {
      */
     private void btn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn1ActionPerformed
         // TODO add your handling code here:
+        if (result != 0 ){ txtNumeros.setText("");}
         if (txtNumeros.getText().length()>=10){
             txtNumeros.enableInputMethods(false);
         }else{
        txtNumeros.setText(txtNumeros.getText() + "1");
         }
+        
     }//GEN-LAST:event_btn1ActionPerformed
 
     private void btn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn2ActionPerformed
         // TODO add your handling code here:
+        if (result != 0 ){ txtNumeros.setText("");}
          if (txtNumeros.getText().length()>=10){
             txtNumeros.enableInputMethods(false);
         }else{
@@ -379,6 +426,7 @@ public class ProyectoCalcu extends javax.swing.JFrame {
 
     private void btn3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn3ActionPerformed
         // TODO add your handling code here:
+        if (result != 0 ){ txtNumeros.setText("");}
          if (txtNumeros.getText().length()>=10){
             txtNumeros.enableInputMethods(false);
         }else{
@@ -388,6 +436,7 @@ public class ProyectoCalcu extends javax.swing.JFrame {
 
     private void btn4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn4ActionPerformed
         // TODO add your handling code here:
+        if (result != 0 ){ txtNumeros.setText("");}
          if (txtNumeros.getText().length()>=10){
             txtNumeros.enableInputMethods(false);
         }else{
@@ -397,6 +446,7 @@ public class ProyectoCalcu extends javax.swing.JFrame {
 
     private void btn5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn5ActionPerformed
         // TODO add your handling code here:
+        if (result != 0 ){ txtNumeros.setText("");}
          if (txtNumeros.getText().length()>=10){
             txtNumeros.enableInputMethods(false);
         }else{
@@ -406,6 +456,7 @@ public class ProyectoCalcu extends javax.swing.JFrame {
 
     private void btn6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn6ActionPerformed
         // TODO add your handling code here:
+        if (result != 0 ){ txtNumeros.setText("");}
          if (txtNumeros.getText().length()>=10){
             txtNumeros.enableInputMethods(false);
         }else{
@@ -415,6 +466,7 @@ public class ProyectoCalcu extends javax.swing.JFrame {
 
     private void btn7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn7ActionPerformed
         // TODO add your handling code here:
+        if (result != 0 ){ txtNumeros.setText("");}
          if (txtNumeros.getText().length()>=10){
             txtNumeros.enableInputMethods(false);
         }else{
@@ -424,6 +476,7 @@ public class ProyectoCalcu extends javax.swing.JFrame {
 
     private void btn8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn8ActionPerformed
         // TODO add your handling code here:
+        if (result != 0 ){ txtNumeros.setText("");}
          if (txtNumeros.getText().length()>=10){
             txtNumeros.enableInputMethods(false);
         }else{
@@ -433,6 +486,7 @@ public class ProyectoCalcu extends javax.swing.JFrame {
 
     private void btn9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn9ActionPerformed
         // TODO add your handling code here:
+        if (result != 0 ){ txtNumeros.setText("");}
          if (txtNumeros.getText().length()>=10){
             txtNumeros.enableInputMethods(false);
         }else{
@@ -442,6 +496,7 @@ public class ProyectoCalcu extends javax.swing.JFrame {
 
     private void btn0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn0ActionPerformed
         // TODO add your handling code here:
+        if (result != 0 ){ txtNumeros.setText("");}
          if (txtNumeros.getText().length()>=10){
             txtNumeros.enableInputMethods(false);
         }else{
@@ -460,7 +515,7 @@ public class ProyectoCalcu extends javax.swing.JFrame {
         btnMenos.setEnabled(true);
         btnDiv.setEnabled(true);
         btnMulti.setEnabled(true);
-        
+        btnMod.setEnabled(true);
     }//GEN-LAST:event_btnCActionPerformed
 
     private void btnComaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComaActionPerformed
@@ -476,7 +531,11 @@ public class ProyectoCalcu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnComaActionPerformed
 // boton de suma y le decimos a la variable signo que sea igual a suma
     private void btnMasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMasActionPerformed
-      if (txtNumeros.getText().length() != 0 ){
+        if (porciento != 0){
+              nun1=nun1;
+              btnMas.setEnabled(false);
+              Signo = "suma"; 
+        }else if (txtNumeros.getText().length() != 0 ){
         nun1 = Float.parseFloat(txtNumeros.getText());
         btnMas.setEnabled(false);
         txtNumeros.setText("");
@@ -487,8 +546,11 @@ public class ProyectoCalcu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnMasActionPerformed
 
     private void btnIgualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIgualActionPerformed
+        if (porciento != 0){
+        nun2 = porciento;
+        }else{       
         nun2 = Float.parseFloat(txtNumeros.getText());
-        
+        }
         if (Signo.equals("suma")){
             result = nun1 + nun2;
             txtNumeros.setText(String.valueOf(result));    
@@ -501,7 +563,13 @@ public class ProyectoCalcu extends javax.swing.JFrame {
         }else if (Signo.equals("division")){
             result = nun1 / nun2;
             txtNumeros.setText(String.valueOf(result));
-        }
+        }else if (Signo.equals("mod")){
+            result = nun1 % nun2;
+            txtNumeros.setText(String.valueOf(result));}
+        btnMas.setEnabled(true);
+        btnMenos.setEnabled(true);
+        btnDiv.setEnabled(true);
+        btnMulti.setEnabled(true);
     }//GEN-LAST:event_btnIgualActionPerformed
 
     private void btnDivActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDivActionPerformed
@@ -520,7 +588,11 @@ public class ProyectoCalcu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnDivActionPerformed
 
     private void btnMenosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenosActionPerformed
-        if (txtNumeros.getText().length() != 0 ){
+        if (porciento != 0){
+              nun1=nun1;
+              btnMenos.setEnabled(false);
+              Signo = "suma"; 
+        }else if (txtNumeros.getText().length() != 0 ){
         nun1 = Float.parseFloat(txtNumeros.getText());
         btnMenos.setEnabled(false);
         txtNumeros.setText("");
@@ -538,6 +610,61 @@ public class ProyectoCalcu extends javax.swing.JFrame {
         }else{JOptionPane.showMessageDialog(null, "Debe digitar un numero");
       }
     }//GEN-LAST:event_btnMultiActionPerformed
+//Recupera el número almacenado en memoria. El número permanece en memoria.
+    private void btnMrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMrActionPerformed
+     txtNumeros.setText(String.valueOf(memoria));  
+        btnMas.setEnabled(true);
+        btnMenos.setEnabled(true);
+        btnDiv.setEnabled(true);
+        btnMulti.setEnabled(true);
+    }//GEN-LAST:event_btnMrActionPerformed
+  // Almacena en memoria el número mostrado.
+    private void btnMsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMsActionPerformed
+       memoria = Float.parseFloat(txtNumeros.getText());
+     //  JOptionPane.showMessageDialog(null, "Numero almacenado con éxito");
+    }//GEN-LAST:event_btnMsActionPerformed
+    /**
+     * Suma el número mostrado a otro número que se encuentre en memoria pero no
+     * muestra la suma de estos números y almacena el resultado en memoria .
+     * 
+     */
+    private void btnMmasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMmasActionPerformed
+     memoria = memoria + Float.parseFloat(txtNumeros.getText());
+    // JOptionPane.showMessageDialog(null,"Calculo realizado con éxito");
+    }//GEN-LAST:event_btnMmasActionPerformed
+
+    private void btnMmenosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMmenosActionPerformed
+       memoria = memoria - Float.parseFloat(txtNumeros.getText());
+    //JOptionPane.showMessageDialog(null,"Calculo realizado con éxito");
+    }//GEN-LAST:event_btnMmenosActionPerformed
+    //Elimina el número mostrado.
+    private void btnCeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCeActionPerformed
+     txtNumeros.setText("");
+    }//GEN-LAST:event_btnCeActionPerformed
+
+    private void btnMasmenosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMasmenosActionPerformed
+        // TODO add your handling code here:
+        // Not Found
+    }//GEN-LAST:event_btnMasmenosActionPerformed
+
+    private void btnPorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPorActionPerformed
+       nun2 = Float.parseFloat(txtNumeros.getText());
+       porciento = (nun2/100)*nun1; 
+       btnMulti.setEnabled(true);
+       txtNumeros.setText(String.valueOf(porciento));
+       
+       
+    }//GEN-LAST:event_btnPorActionPerformed
+
+    private void btnModActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModActionPerformed
+        if (txtNumeros.getText().length() != 0 ){
+        nun1 = Float.parseFloat(txtNumeros.getText());
+        btnMod.setEnabled(false);
+        txtNumeros.setText("");
+        Signo = "mod";
+        }else{JOptionPane.showMessageDialog(null, "Debe digitar un numero");
+      }
+    }//GEN-LAST:event_btnModActionPerformed
    /**
     * 
     * metodo que me retorna si existe un punto ya dentro 
