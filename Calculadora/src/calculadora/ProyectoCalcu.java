@@ -14,14 +14,14 @@ import javax.swing.JOptionPane;
  */
 public class ProyectoCalcu extends javax.swing.JFrame {
     // variables globales para almacenar el primer digito y realizar la operacion con el segundo y mostrar el resultado
-    public float nun1 ;
-    public float nun2 ;
-    public float result = 0;
+    public float nun1 ; // REPRESENTA EL PRIMIER DIGITO QUE SE INGRESE 
+    public float nun2 ;// REPRESENTA EL SEGUNDO DIGITO QUE SE INGRESE 
+    public float result = 0;// VARIABLE QUE ALMACENA LOS RESULTADOS DE LAS OPERACIONES
     public String Signo; // sirve para saber que tipo de operacion estoy realizando asi decidir que operacion 
     // ejecutar despues de pulsar el boton igual
-    public float memoria = 0;
-    public float porciento = 0;
-    
+    public float memoria = 0; // ALMACENA NUMEROS QUE EL USUARIO QUIERA GURADAR PARA FUTUROS CALCULOS 
+    public float porciento = 0;//ALMACENA EL RESULTADO DEL PORCENTAJE DE UN NÚMERO
+    public String cadena ;// ALMACENA EL TOTAL DE CARACTERES QUE HAYAN EN EL CAMPO DE TEXTO
     /**
      * Creates new form ProyectoCalcu
      */
@@ -136,6 +136,11 @@ public class ProyectoCalcu extends javax.swing.JFrame {
         });
 
         bntBorrar.setText("<-");
+        bntBorrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bntBorrarActionPerformed(evt);
+            }
+        });
 
         btnCe.setText("CE");
         btnCe.addActionListener(new java.awt.event.ActionListener() {
@@ -401,7 +406,8 @@ public class ProyectoCalcu extends javax.swing.JFrame {
      * Creamos los eventos action performance de todos los botones con numeros para
      * darles la funcion de cuando se precione alguno 
      * en cada buton si el campo de texto llega a sus 10 digitos el se bloquea y no permite el ingreso de mas
-     * 
+     * Y SI YA SE HA ECHO UNA OPERACION Y VUELVO A DIGITAR UN NUMERO BORRAR LO QUE HAY EN EL TEXTO
+     * Y INGRESA LOS NUEVOS NUMEROS
      */
     private void btn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn1ActionPerformed
         // TODO add your handling code here:
@@ -516,8 +522,16 @@ public class ProyectoCalcu extends javax.swing.JFrame {
         btnDiv.setEnabled(true);
         btnMulti.setEnabled(true);
         btnMod.setEnabled(true);
+        nun1 = 0;
+        nun2 = 0;
     }//GEN-LAST:event_btnCActionPerformed
+    /**
+     * boton para colocar la coma primero revisa si existe algun caracter y sino coloca 0 y la coma
+     * y si ya se ha agregado una coma le dice al usuario que ya existe
+     * 
+     */    
 
+    
     private void btnComaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComaActionPerformed
         // TODO add your handling code here:
         if (txtNumeros.getText().length() <= 0 ){
@@ -544,7 +558,7 @@ public class ProyectoCalcu extends javax.swing.JFrame {
       }
       
     }//GEN-LAST:event_btnMasActionPerformed
-
+      // muestra los resultados de todas las operaciones 
     private void btnIgualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIgualActionPerformed
         if (porciento != 0){
         nun2 = porciento;
@@ -571,7 +585,7 @@ public class ProyectoCalcu extends javax.swing.JFrame {
         btnDiv.setEnabled(true);
         btnMulti.setEnabled(true);
     }//GEN-LAST:event_btnIgualActionPerformed
-
+      // resulelve la operacion de division en la calculadora 
     private void btnDivActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDivActionPerformed
        if (txtNumeros.getText().length() == 0 ){
            JOptionPane.showMessageDialog(null, "Debe digitar un numero");
@@ -586,12 +600,12 @@ public class ProyectoCalcu extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_btnDivActionPerformed
-
+    // resuelve la operacion de resta en la calculadora 
     private void btnMenosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenosActionPerformed
         if (porciento != 0){
               nun1=nun1;
               btnMenos.setEnabled(false);
-              Signo = "suma"; 
+              Signo = "resta"; 
         }else if (txtNumeros.getText().length() != 0 ){
         nun1 = Float.parseFloat(txtNumeros.getText());
         btnMenos.setEnabled(false);
@@ -600,7 +614,7 @@ public class ProyectoCalcu extends javax.swing.JFrame {
         }else{JOptionPane.showMessageDialog(null, "Debe digitar un numero");
       }
     }//GEN-LAST:event_btnMenosActionPerformed
-
+      // resuelve la operacion de multiplicación en la calculadora 
     private void btnMultiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMultiActionPerformed
         if (txtNumeros.getText().length() != 0 ){
         nun1 = Float.parseFloat(txtNumeros.getText());
@@ -646,7 +660,7 @@ public class ProyectoCalcu extends javax.swing.JFrame {
         // TODO add your handling code here:
         // Not Found
     }//GEN-LAST:event_btnMasmenosActionPerformed
-
+     // saca el porcentaje de un numero 
     private void btnPorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPorActionPerformed
        nun2 = Float.parseFloat(txtNumeros.getText());
        porciento = (nun2/100)*nun1; 
@@ -655,7 +669,7 @@ public class ProyectoCalcu extends javax.swing.JFrame {
        
        
     }//GEN-LAST:event_btnPorActionPerformed
-
+  // calcula el residou de la división 
     private void btnModActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModActionPerformed
         if (txtNumeros.getText().length() != 0 ){
         nun1 = Float.parseFloat(txtNumeros.getText());
@@ -665,6 +679,13 @@ public class ProyectoCalcu extends javax.swing.JFrame {
         }else{JOptionPane.showMessageDialog(null, "Debe digitar un numero");
       }
     }//GEN-LAST:event_btnModActionPerformed
+    // BORRA EL ÚLTIMO NUMERO DIGITADO SIN BORRAR NINGÚN CÁLCULO
+    private void bntBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntBorrarActionPerformed
+        cadena = txtNumeros.getText();
+        if (cadena.length() != 0){
+        txtNumeros.setText(cadena.substring(0, cadena.length()-1));
+        }
+    }//GEN-LAST:event_bntBorrarActionPerformed
    /**
     * 
     * metodo que me retorna si existe un punto ya dentro 
